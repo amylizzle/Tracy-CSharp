@@ -4,7 +4,8 @@
     "../ext/Tracy"
   ],
   "defines": {
-    "TRACY_ENABLE": "1"
+    "TRACY_ENABLE": "1",
+    "TRACY_API": "__attribute__((visibility(\"default\")))"
   },
   "targetPlatforms": {
     "windows": {
