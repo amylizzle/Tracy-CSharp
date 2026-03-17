@@ -33,8 +33,3 @@ for lib_file in $lib_files; do
 
     echo "Stripped and renamed: $file_name -> $new_name"
 done	
-	
-	
-if [[ -z "$1" ]]; then
-    read
-fi

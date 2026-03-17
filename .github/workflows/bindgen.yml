@@ -4,7 +4,7 @@ on:
   workflow_call:
 
 jobs:
-  bindgen-ast-job:
+  bindgen-ffi-job:
     name: "Bindgen AST"
     runs-on: ${{ matrix.platform.os }}
     strategy:
@@ -21,9 +21,9 @@ jobs:
         with:
           submodules: "true"
 
-      - name: "Install CAstFfi"
+      - name: "Install c2ffi"
         shell: bash
-        run: dotnet tool install --global bottlenoselabs.CAstFfi.Tool
+        run: dotnet tool install --global bottlenoselabs.c2ffi.Tool
 
       - name: "Read C code: Linux dependencies"
         if: runner.os == 'Linux'
@@ -36,12 +36,12 @@ jobs:
       - name: "Upload C code platform abstract syntax trees"
         uses: actions/upload-artifact@v4
         with:
-          name: "ast-${{ matrix.platform.rid }}"
-          path: "./bindgen/ast"
+          name: "ffi-${{ matrix.platform.rid }}"
+          path: "./bindgen/ffi"
 
-  bindgen-cross-platform-ast-job:
+  bindgen-cross-platform-ffi-job:
     name: "Bindgen AST cross-platform"
-    needs: [bindgen-ast-job]
+    needs: [bindgen-ffi-job]
     runs-on: ubuntu-20.04
 
     steps:
@@ -53,24 +53,24 @@ jobs:
       - name: "Download C code platform abstract syntax trees (win)"
         uses: actions/download-artifact@v4
         with:
-          name: "ast-win"
-          path: "./bindgen/ast"
+          name: "ffi-win"
+          path: "./bindgen/ffi"
 
       - name: "Download C code platform abstract syntax trees (osx)"
         uses: actions/download-artifact@v4
         with:
-          name: "ast-osx"
-          path: "./bindgen/ast"
+          name: "ffi-osx"
+          path: "./bindgen/ffi"
 
       - name: "Download C code platform abstract syntax trees (linux)"
         uses: actions/download-artifact@v4
         with:
-          name: "ast-linux"
-          path: "./bindgen/ast"
+          name: "ffi-linux"
+          path: "./bindgen/ffi"
 
-      - name: "Install CAstFfi"
+      - name: "Install c2ffi"
         shell: bash
-        run: dotnet tool install --global bottlenoselabs.CAstFfi.Tool
+        run: dotnet tool install --global bottlenoselabs.c2ffi.Tool
 
       - name: "Generate cross-platform AST"
         shell: bash
@@ -79,12 +79,12 @@ jobs:
       - name: "Upload cross-platform AST"
         uses: actions/upload-artifact@v4
         with:
-          name: "ast-cross-platform"
-          path: "./bindgen/x-ast/ast-cross-platform.json"
+          name: "ffi-cross-platform"
+          path: "./bindgen/x-ffi/ffi-cross-platform.json"
 
   bindgen-cs-job:
     name: "Bindgen C#"
-    needs: [bindgen-cross-platform-ast-job]
+    needs: [bindgen-cross-platform-ffi-job]
     runs-on: ubuntu-20.04
 
     steps:
@@ -96,8 +96,8 @@ jobs:
       - name: "Download C code cross-platform abstract syntax tree"
         uses: actions/download-artifact@v4
         with:
-          name: "ast-cross-platform"
-          path: "./bindgen/x-ast"
+          name: "ffi-cross-platform"
+          path: "./bindgen/x-ffi"
 
       - name: "Install C2CS"
         shell: bash
