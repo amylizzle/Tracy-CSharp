@@ -28,6 +28,11 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 10.0.x          
+
       - name: "Install C2CS"
         shell: bash
         run: dotnet tool install --global bottlenoselabs.C2CS.Tool

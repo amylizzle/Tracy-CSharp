@@ -17,7 +17,7 @@ jobs:
   release-job:
     name: "Release"
     needs: [build-job]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
@@ -43,7 +43,12 @@ jobs:
         with:
           name: "native-libraries-linux-x64"
           path: "./lib"
-
+          
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 10.0.x
+          
       - name: ".NET pack"
         run: dotnet pack "./src/cs" --nologo --verbosity minimal --configuration Release -p:PackageVersion="${{ github.event.inputs.version }}" -p:RepositoryBranch="${{ github.head_ref || github.ref_name }}" -p:RepositoryCommit="${{ github.sha }}"
 
