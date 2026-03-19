@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
-using bottlenoselabs.C2CS.Runtime;
+using Interop.Runtime;
 using static Tracy.PInvoke;
 
 public static class Profiler
@@ -42,9 +42,9 @@ public static class Profiler
         [CallerFilePath] string filePath = null,
         [CallerMemberName] string memberName = null)
     {
-        using var filestr = GetCString(filePath, out var fileln);
-        using var memberstr = GetCString(memberName, out var memberln);
-        using var namestr = GetCString(zoneName, out var nameln);
+        var filestr = GetCString(filePath, out var fileln);
+        var memberstr = GetCString(memberName, out var memberln);
+        var namestr = GetCString(zoneName, out var nameln);
         var srcLocId = TracyAllocSrclocName(lineNumber, filestr, fileln, memberstr, memberln, namestr, nameln, color);
         var context = TracyEmitZoneBeginAlloc(srcLocId, active ? 1 : 0);
 

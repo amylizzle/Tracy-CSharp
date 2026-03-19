@@ -4,13 +4,6 @@
   "namespaceName": "Tracy",
   "className": "PInvoke",
   "libraryName": "TracyClient",
-  "mappedNames": [
-],
-  "ignoredNames": [
-],
-  "isEnabledVerifyCSharpCodeCompiles": false,
-  "mappedCNamespaces": [
-  ],
   "isEnabledAssemblyAttributes": true,
   "isEnabledLibraryImport": true,
   "isEnabledIdiomaticCSharp": true,
