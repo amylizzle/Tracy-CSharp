@@ -94,5 +94,8 @@ jobs:
           name: "bindgen-cs"
           path: "./src/cs/production/Tracy/Generated"
 
-      - name: ".NET Build"
-        run: dotnet build "./src/cs" --nologo --verbosity minimal --configuration Release -p:PackageVersion="$(date +'%Y.%m.%d')"
+      - name: ".NET Build NuGet Package"
+        run: dotnet pack "./src/cs/production/Tracy" --nologo --verbosity minimal --configuration Release
+
+      - name: ".NET Build Sample"
+        run: dotnet build "./src/cs/sample/HelloWorld" 
