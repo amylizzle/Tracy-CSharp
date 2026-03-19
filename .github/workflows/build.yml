@@ -98,4 +98,4 @@ jobs:
         run: dotnet pack "./src/cs/production/Tracy" --nologo --verbosity minimal --configuration Release
 
       - name: ".NET Build Sample"
-        run: dotnet build "./src/cs/sample/HelloWorld" 
+        run: dotnet build "./src/cs/samples/HelloWorld" 
