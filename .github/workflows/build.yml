@@ -97,5 +97,8 @@ jobs:
       - name: ".NET Build NuGet Package"
         run: dotnet pack "./src/cs/production/Tracy" --nologo --verbosity minimal --configuration Release
 
+      - name: "Add package to Sample"
+        run: dotnet add ./src/cs/samples/HelloWorld/ package Tracy-CSharp  --source ./artifacts/package/release
+
       - name: ".NET Build Sample"
         run: dotnet build "./src/cs/samples/HelloWorld" 
