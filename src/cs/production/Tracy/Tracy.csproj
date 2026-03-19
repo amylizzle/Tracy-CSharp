@@ -2,7 +2,8 @@
 
     <!-- MSBuild settings -->
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <Version>0.13.1</Version>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <RootNamespace />
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -10,6 +11,7 @@
 
     <!-- NuGet settings -->
     <PropertyGroup>
+        <Version>0.13.1</Version>
         <IsPackable>true</IsPackable>
         <PackageId>Tracy-CSharp</PackageId>
         <PackageDescription>C# interop bindings for https://github.com/wolfpld/tracy.</PackageDescription>

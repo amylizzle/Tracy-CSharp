@@ -17,8 +17,8 @@
 /lib/
 
 # Bindgen
-/bindgen/ast/
-/bindgen/x-ast/
+/bindgen/ffi/
+/bindgen/x-ffi/
 
 # macOS
 .DS_store
